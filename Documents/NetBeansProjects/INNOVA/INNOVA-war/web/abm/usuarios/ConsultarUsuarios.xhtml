@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content">  
+        <h:head>#{msg['label.lista_usuarios']}</h:head> 
+        <h:body>
+            <h:form> 
+                <p:dataTable var="usuario" value="#{usuariosMBean.usuarios}" paginator="true" rows="10"> 
+                    <p:column headerText="#{msg['label.codigo']}" style="color: red;"> 
+                        <h:commandLink action="#{usuariosMBean.editar(usuario)}"> 
+                            <h:outputText value="#{usuario.idUsuario}"></h:outputText> 
+                        </h:commandLink> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.nombre']}"> 
+                        <h:outputText value="#{usuario.nombre} #{usuario.apellido}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.nivel_acceso']}"> 
+                        <h:outputText value="#{msg['label.alto']}" rendered="#{usuario.nivelAcceso == 1}"></h:outputText>
+                        <h:outputText value="#{msg['label.bajo']}" rendered="#{usuario.nivelAcceso == 2}"></h:outputText>
+                    </p:column>
+                    <p:column headerText="#{msg['label.accion']}"> 
+                        <p:commandButton value="#{msg['label.eliminar']}" action="#{usuariosMBean.eliminar(usuario)}" ajax="false"></p:commandButton> 
+                    </p:column>
+                </p:dataTable>  
+                <p:commandButton value="#{msg['label.nuevo']}" id="bNuevaAutor" 
+                                 action="#{usuariosMBean.nuevo()}" ajax="false"> 
+                </p:commandButton>
+
+            </h:form> 
+
+
+        </h:body>
+    </ui:define>
+</ui:composition>

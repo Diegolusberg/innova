@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content"> 
+
+        <h:body>
+            <p:panel id="panel" header="#{msg['label.listar_alquileres']}" style="margin-bottom:10px;">
+                <h:form> 
+                    <p:dataTable var="alqui" value="#{alquilerMbean.alquilereses}" paginator="true" rows="10"> 
+                        <p:column headerText="#{msg['label.codigo']}" style="color: red;"> 
+                            <h:outputText value="#{alqui.idAlquiler}"></h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.fecha_inicio']}"> 
+                            <h:outputText value="#{alqui.fechaIni}"></h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.fecha_fin']}"> 
+                            <h:outputText value="#{alqui.fechaFin}"></h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.cantidad_dias']}"> 
+                            <h:outputText value="#{alqui.cantidadDias}"></h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.total']}"> 
+                            <h:outputText value="#{alqui.montoTotal}"></h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.auto']}"> 
+                            <h:outputText value="#{alqui.idAuto.chapa}"></h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.cliente_nombre']}"> 
+                            <h:outputText value="#{alqui.idCliente.nombre}"></h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.estado']}"> 
+                            <h:outputText value="#{msg['label.alquilado']}" rendered="#{alqui.estadoReserva == 0}"></h:outputText>
+                            <h:outputText value="#{msg['label.reservado']}" rendered="#{alqui.estadoReserva == 1}"></h:outputText> 
+                            <h:outputText value="#{msg['label.devuelto']}" rendered="#{alqui.estadoReserva == 2}"></h:outputText>   
+                        </p:column>   
+                        <p:column headerText="#{msg['label.situacion']}"> 
+                            <h:outputText value="#{msg['label.vigente']}" rendered="#{alqui.situacion == 0}"></h:outputText>
+                            <h:outputText value="#{msg['label.anulado']}" rendered="#{alqui.situacion == 1}"></h:outputText>
+                        </p:column>
+                        <p:column headerText="#{msg['label.accion']}"> 
+                            <p:commandButton value="#{msg['label.anular']}" action="#{alquilerMbean.anular(alqui)}" ajax="false" rendered="#{alqui.situacion == 0}"> </p:commandButton>
+                        </p:column> 
+                        <p:column headerText="#{msg['label.devolucion']}" style="white-space: pre">
+                            <h:commandButton value="#{msg['label.devolver']}" action="#{alquilerMbean.editar(alqui)}" disabled="#{alqui.estadoReserva == 2}"></h:commandButton>
+                        </p:column> 
+                    </p:dataTable>  
+
+                    <p:commandButton value="#{msg['label.nuevo']}" id="bNuevoAlquiler" 
+                                     action="#{alquilerMbean.nuevo()}" ajax="false"> 
+                    </p:commandButton> 
+                </h:form> 
+            </p:panel>
+
+        </h:body>
+    </ui:define>
+</ui:composition>
+
+
+

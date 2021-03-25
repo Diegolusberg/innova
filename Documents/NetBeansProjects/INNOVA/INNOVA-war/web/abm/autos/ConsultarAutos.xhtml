@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content"> 
+        <h:head>#{msg['label.lista_auto']}</h:head> 
+        <h:body>
+            <h:form> 
+                <p:dataTable var="auto" value="#{autoMBean.autoses}" paginator="true" rows="10"> 
+                    <p:column headerText="#{msg['label.codigo']}" style="color: red;"> 
+                        <h:commandLink action="#{autoMBean.editar(auto)}"> 
+                            <h:outputText value="#{auto.idAuto}"></h:outputText> 
+                        </h:commandLink> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.chapa']}"> 
+                        <h:outputText value="#{auto.chapa}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.marca']}"> 
+                        <h:outputText value="#{auto.marca}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.modelo']}"> 
+                        <h:outputText value="#{auto.modelo}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.anio']}"> 
+                        <h:outputText value="#{auto.anho}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.detalles']}"> 
+                        <h:outputText value="#{auto.detalles}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.valor_diaria']}"> 
+                        <h:outputText value="#{auto.valorDiaria}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.estado']}"> 
+                        <h:outputText value="#{auto.estado}"></h:outputText> 
+                    </p:column>  
+                    <p:column headerText="#{msg['label.valor_adicional']}"> 
+                        <h:outputText value="#{auto.valorAdiccional}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.fecha_compra']}"> 
+                        <h:outputText value="#{auto.fechaCompra}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.accion']}"> 
+                        <p:commandButton value="#{msg['label.cuotas']}" action="#{autoMBean.irACuotasAutos(auto)}" ajax="false" rendered="#{auto.formaCompra=='FINANCIADO'}"> 
+                        </p:commandButton> 
+                    </p:column> 
+                    <p:commandButton value="#{msg['label.atras']}" action="#{autoMBean.irALaConsulta()}" /> 
+                </p:dataTable>  
+                <p:commandButton value="#{msg['label.nuevo']}" id="bNuevaAuto" 
+                                 action="#{autoMBean.nuevo()}" ajax="false"> 
+                </p:commandButton> 
+            </h:form> 
+
+
+        </h:body>
+    </ui:define>
+</ui:composition>
+
+
+
+
+<!--                    <p:column headerText="#{msg['label.valor_seguro']}"> 
+                        <h:outputText value="#{auto.valorSeguro}"></h:outputText> 
+                    </p:column>-->

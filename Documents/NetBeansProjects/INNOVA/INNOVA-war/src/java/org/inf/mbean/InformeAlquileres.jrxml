@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeAlquileres" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ae7b1c62-b107-4be6-94ec-db11f6b45af9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAuto" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idCliente" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.id_alquiler as "Codigo",
+a.fecha_ini::Date as "Fecha Inicio",
+fecha_fin::Date as "Fecha Fin",
+monto_total as "Monto",
+concat(trim(b.marca),' ',trim(b.modelo),' Chapa: ',trim(b.chapa)) as "Auto",
+concat(trim(c.nombre),' ',trim(c.apellido),' (Cod: ',c.id_cliente,')') as "Cliente",
+case estado_reserva when 0 then 'Alquilado' when 1 then 'Reservado' when 2 then 'Devuelto' End::Character(9) as "Estado"
+from alquileres a
+left join autos b on a.id_auto=b.id_auto
+left join clientes c on a.id_cliente=c.id_cliente
+where (a.id_auto = $P{idAuto} or $P{idAuto} = 0)
+and (c.id_cliente = $P{idCliente} or $P{idCliente} =0)
+order by a.id_alquiler]]>
+	</queryString>
+	<field name="Codigo" class="java.lang.Integer"/>
+	<field name="Fecha Inicio" class="java.sql.Date"/>
+	<field name="Fecha Fin" class="java.sql.Date"/>
+	<field name="Monto" class="java.lang.Integer"/>
+	<field name="Auto" class="java.lang.String"/>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="Estado" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3e7f1953-d0a3-458e-82bc-7e603a80c40d" x="0" y="19" width="555" height="44"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INNOVA RENTA CAR]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="27c69299-058f-44e5-8cf8-aa9c2890a327" x="0" y="0" width="555" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE ALQUILERES]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e7910cf0-b860-4052-9688-2f3ccc7364dc" x="6" y="0" width="38" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Codigo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ed344e92-6fa0-41e4-b8e5-d92b902d02b9" x="49" y="0" width="53" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Inicio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1026408f-00b3-4412-8343-eebd7f617d4a" x="108" y="0" width="53" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Fin]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="98fe1e7d-4f0f-4606-967c-0df173523308" x="163" y="0" width="52" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="136937cf-fe29-4be3-9e61-1d3ddcfa4eac" x="225" y="0" width="114" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Auto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a59b77f5-bdaf-43c6-ad6a-fefed9ca74db" x="345" y="0" width="118" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cliente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7b3cd196-d958-4788-958d-4147bd088a36" x="469" y="0" width="75" height="20"/>
+				<textElement/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b40e479b-5def-4c89-b239-a8fbb9d56fc9" x="6" y="0" width="38" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Codigo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="ab84da51-5041-4d37-b97e-e1e1b9639f33" x="49" y="0" width="53" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha Inicio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="24f0077f-f183-4d6a-acd2-584c56db978e" x="108" y="0" width="53" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha Fin}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement uuid="aa23db3a-07bc-46a3-b9e1-c2ebcc5a0a3d" x="163" y="0" width="52" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Monto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="20c89600-7eed-496e-8093-8da60dd6dfc0" x="225" y="0" width="114" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Auto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f872e456-2755-4739-81ec-1e5d9bb5c3aa" x="345" y="0" width="118" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e1398bef-1073-4e30-9112-78c1493f045c" x="469" y="0" width="75" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Estado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

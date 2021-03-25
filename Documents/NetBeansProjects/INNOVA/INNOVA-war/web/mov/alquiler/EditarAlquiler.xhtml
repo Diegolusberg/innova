@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content"> 
+        <h:head>#{msg['label.editar_alquiler']}</h:head> 
+        <h:body> 
+            <h:form>  
+                <h:panelGrid border="1" columns="2"> 
+                    <h:outputText value="#{msg['label.fecha_inicio']}"></h:outputText> 
+                    <p:inputText  value="#{alquilerMbean.fechaIni}" type="Date" disabled="#{alquilerMbean.alquiler.idAlquiler != null}" required="true" requiredMessage="#{msg['label.fechaIniObligatorio']}"></p:inputText> 
+                    <h:outputText value="#{msg['label.fecha_fin']}"></h:outputText> 
+                    <p:inputText value="#{alquilerMbean.fechaFin}" type="Date"  disabled="#{alquilerMbean.alquiler.idAlquiler != null}" required="true" requiredMessage="#{msg['label.fechaFinObligatorio']}">
+                    </p:inputText> 
+                    <h:outputText value="#{msg['label.auto']}"></h:outputText> 
+                    <p:selectOneMenu  value="#{alquilerMbean.alquiler.idAuto.idAuto}" disabled="#{alquilerMbean.alquiler.idAlquiler != null}"
+                                      style="width:150px" required="true" requiredMessage="#{msg['label.autoObligatorio']}">
+                        <f:selectItem itemLabel="#{msg['label.seleccione']}" itemValue="" noSelectionOption="true"  />
+                        <f:selectItems value="#{alquilerMbean.autoses}" var="autos" itemLabel="#{autos.marca} #{autos.modelo}" itemValue="#{autos.idAuto}"/>
+
+                        <!--<p:ajax listener="{alquilerMbean.genMontoEstimado()}" update="@(.monto)" process="@this"/>-->
+                    </p:selectOneMenu>
+                    <h:outputText value="#{msg['label.cliente_nombre']}"></h:outputText> 
+                    <p:selectOneMenu  value="#{alquilerMbean.alquiler.idCliente.idCliente}" disabled="#{alquilerMbean.alquiler.idAlquiler != null}"
+                                      style="width:150px" required="true" requiredMessage="#{msg['label.clienteObligatorio']}">
+                        <f:selectItem itemLabel="#{msg['label.seleccione']}" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{alquilerMbean.clienteses}" var="clientes" itemLabel="#{clientes.nombre} #{clientes.apellido}" itemValue="#{clientes.idCliente}"/>
+                    </p:selectOneMenu>
+                    <h:outputText value="#{msg['label.estado_alquiler']}"></h:outputText>
+                    <p:selectOneMenu value="#{alquilerMbean.alquiler.estadoReserva}" disabled="#{alquilerMbean.alquiler.idAlquiler != null}"
+                                     style="width:150px">
+                        <f:selectItem itemLabel="#{msg['label.alquiler']}" itemValue='0'/>
+                        <f:selectItem itemLabel="#{msg['label.reserva']}" itemValue='1'/>
+                        <!--<f:selectItem itemLabel="Devuelto" itemValue='2'/>-->
+                    </p:selectOneMenu>
+                    <h:outputText value="#{msg['label.fecha_devolucion']}"></h:outputText> 
+                    <p:inputText
+                        value="#{alquilerMbean.fechaDevolucion}" type="Date" disabled="#{alquilerMbean.alquiler.idAlquiler == null}" required="true" requiredMessage="#{msg['label.fechaDevObligatorio']}">
+                    </p:inputText> 
+
+                </h:panelGrid>
+                <p:commandButton value="#{msg['label.actualizar']}" action="#{alquilerMbean.actualizar()}"/> 
+                <p:commandButton value="#{msg['label.atras']}" action="#{alquilerMbean.irALaConsulta()}" immediate="true" />
+
+            </h:form> 
+        </h:body> 
+    </ui:define>
+</ui:composition>

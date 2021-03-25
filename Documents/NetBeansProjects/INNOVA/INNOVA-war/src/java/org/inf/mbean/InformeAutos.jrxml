@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InformeAutos" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" uuid="2a8c2041-4b8a-4d66-9287-76ce41e9d0ce">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idDsd" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idHst" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[99999]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select * from autos where id_auto >= $P{idDsd} and id_auto <= $P{idHst} order by id_auto]]>
+	</queryString>
+	<field name="id_auto" class="java.lang.Integer"/>
+	<field name="chapa" class="java.lang.String"/>
+	<field name="marca" class="java.lang.String"/>
+	<field name="modelo" class="java.lang.String"/>
+	<field name="anho" class="java.lang.Integer"/>
+	<field name="detalles" class="java.lang.String"/>
+	<field name="valor_diaria" class="java.lang.Integer"/>
+	<field name="estado" class="java.lang.String"/>
+	<field name="valor_adiccional" class="java.lang.Integer"/>
+	<field name="fecha_compra" class="java.sql.Date"/>
+	<field name="forma_compra" class="java.lang.String"/>
+	<field name="precio" class="java.lang.Integer"/>
+	<field name="entrega" class="java.lang.Integer"/>
+	<field name="cant_cuotas" class="java.lang.Integer"/>
+	<field name="val_cuota" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="49" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3e7f1953-d0a3-458e-82bc-7e603a80c40d" x="16" y="0" width="775" height="37"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INNOVA RENTA CAR]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="27c69299-058f-44e5-8cf8-aa9c2890a327" x="11" y="0" width="555" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE AUTOS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="a212d887-84a4-476a-9ffb-a4ad2f36d726" x="6" y="2" width="45" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CODIGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2c3e8be5-c7d4-47d7-b9e4-9897f2d2ccc2" x="57" y="2" width="44" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[CHAPA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="583449c9-db00-4bc0-81c1-a2c5609c61d6" x="117" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[MARCA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="151ababb-e85d-4757-8183-cbf39a870e6e" x="223" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[MODELO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="107a3a02-9c05-49b1-8022-2d7db976aa0c" x="330" y="2" width="38" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[AÑO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0b3a599b-0147-4fbb-aa19-af4f8c2f6d44" x="380" y="2" width="76" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4bacbbbb-a6c2-4f88-b633-5400c246aab0" x="464" y="2" width="79" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FCH COMPRA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9958ee4c-6e5a-4721-9135-bc9b131fe0e2" x="553" y="2" width="80" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[PRECIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eb796e42-7363-46af-843c-3d93252a8ab1" x="646" y="2" width="110" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FORMA DE COMPRA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement uuid="7dc51210-264c-413d-9ae4-b5cd363e3f73" x="6" y="3" width="45" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{id_auto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6bbe4b57-d822-47e6-8ff1-573475163b97" x="57" y="3" width="56" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{chapa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2364b237-0b2f-4a19-8b4c-6c9321e540ec" x="117" y="3" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{marca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d57043bb-c577-4502-a7dc-67bb52cc143b" x="223" y="3" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{modelo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="4e403702-ac9f-4038-ba57-f27aa68dae76" x="330" y="3" width="38" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{anho}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8daf4bc9-65d1-4301-a7f9-586a161a4fe7" x="380" y="3" width="76" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{estado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="93a20a9f-0272-4924-84de-89c15cc97200" x="464" y="3" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fecha_compra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d9594288-adda-4976-bbf3-a5728d16ef97" x="553" y="3" width="80" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{precio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="04d33815-9f82-47b3-9025-47ea4a937893" x="646" y="3" width="110" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{forma_compra}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="26" splitType="Stretch">
+			<line>
+				<reportElement uuid="3166c680-e1b0-44d0-966c-8e3ba076ccbf" x="11" y="5" width="780" height="5"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

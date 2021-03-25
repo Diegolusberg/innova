@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content">  
+        <h:body>  
+            <p:panel id="panel" header="#{msg['label.editar_tipo_mov']}" style="margin-bottom:10px;">
+                <h:form> 
+                    <h:panelGrid border="1" columns="2"> 
+                        <h:outputText value="#{msg['label.codigo']}"></h:outputText> 
+                        <p:inputText value="#{tMovimientosMBean.tipomovimiento.idTipomovimiento}"></p:inputText> 
+                        <h:outputText value="#{msg['label.descripcion']}"></h:outputText> 
+                        <p:inputText value="#{tMovimientosMBean.tipomovimiento.descripcion}" required="true" requiredMessage="#{msg['label.descripcionObligatorio']}"></p:inputText>
+                    </h:panelGrid> 
+                    <p:commandButton value="#{msg['label.actualizar']}" action="#{tMovimientosMBean.actualizar()}" /> 
+                    <p:commandButton value="#{msg['label.atras']}" action="#{tMovimientosMBean.irALaConsulta()}" immediate="true"/> 
+                </h:form> 
+            </p:panel>
+        </h:body> 
+    </ui:define>
+</ui:composition>

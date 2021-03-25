@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Página de Login</title>
+    </h:head>
+    <h:body>
+        <div  style="background-image: url(/INNOVA-war/recursos/innova_rojo.jpeg); height: 100%; position:absolute; width: 100%;">
+            <f:view>
+                <h:form id="loginForm">
+                    <table frame="box"   style="width:300px;
+                           height:300px;
+                           position:fixed;
+                           background-color:#d9d9d9;margin-left: -150px; margin-top: -150px;  top:50%;
+                           left:50%;">
+                        <tr>
+                            <th style=" position:fixed; margin-top: 40px; margin-left: 90px ">Acceso al Sistema</th>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Username " /></td>
+                            <td><h:inputText id="inputName" value="#{loginMBean.username}"
+                                             required="true"
+                                             requiredMessage="El nombre de usuario no puede ser
+                                             vacio" /></td>
+                            <td><h:message for="inputName" style="color:red" /></td>
+                        </tr>
+                        <tr>
+                            <td><h:outputText value="Password:" /></td>
+                            <td><h:inputSecret id="inputPassword"
+                                               value="#{loginMBean.password}" required="true"
+                                               requiredMessage="El Password no puede ser vacío" /></td>
+                            <td><h:message for="inputPassword" style="color:red" /></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h:commandButton  style="margin-left: 120px;" value="Login" 
+                                                  action="#{loginMBean.verificarLogin}" />
+                            </td>
+                        </tr>
+                    </table></h:form>
+            </f:view>
+        </div>
+    </h:body>
+</html>

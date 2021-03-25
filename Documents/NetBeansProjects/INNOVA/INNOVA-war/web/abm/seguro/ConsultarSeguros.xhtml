@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content">
+        <!-- Código de la funcionalidad va aquí -->
+
+        <h:head></h:head> 
+        <h:body>
+            <p:panel id="panel" header="#{msg['label.listar_seguro']}" style="margin-bottom:10px;">
+                <h:form> 
+                    <p:dataTable id="tabla" var="seguro" value="#{seguroMBean.seguros}" paginator="true" rows="10"> 
+                        <p:column headerText="#{msg['label.chapa']}" style="color: red;"> 
+                            <h:commandLink action="#{seguroMBean.editar(seguro)}"> 
+                                <h:outputText value="#{seguro.autos.chapa}" style="text-align: center"></h:outputText> 
+                            </h:commandLink> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.auto']}"> 
+                            <h:outputText value="#{seguro.autos.marca} #{seguro.autos.modelo}" style="text-align: center"></h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.valor_seguro']}"> 
+                            <h:outputText value="#{seguro.valorSeguro}" style="text-align: center"></h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.vencimiento']}" > 
+                            <h:outputText value="#{seguro.fchVenc}"  style="text-align: center">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText> 
+                        </p:column> 
+                        <p:column headerText="#{msg['label.estado']}"> 
+                            <h:outputText value="#{seguro.estadoSeguro==1 ? 'Pendiente' : 'Pagado'}" style="text-align: center"></h:outputText> 
+                        </p:column> 
+                    </p:dataTable>  
+                    <p:commandButton value="#{msg['label.nuevo']}" id="NuevoSeguro" 
+                                     action="#{seguroMBean.nuevo()}" ajax="false"> 
+                    </p:commandButton> 
+                </h:form> 
+            </p:panel>
+
+        </h:body>
+    </ui:define>
+</ui:composition>
+
+
+<!--<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html xmlns="http://www.w3.org/1999/xhtml"  
+        xmlns:h="http://java.sun.com/jsf/html"  
+        xmlns:p="http://primefaces.org/ui"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head></h:head> 
+    <h:body>
+        <p:panel id="panel" header="Lista de Seguros" style="margin-bottom:10px;">
+            <h:form> 
+                <p:dataTable id="tabla" var="seguro" value="#{seguroMBean.seguros}" > 
+                            <p:column headerText="Chapa" style="color: red;"> 
+                                <h:commandLink action="#{seguroMBean.editar(seguro)}"> 
+                                    <h:outputText value="#{seguro.autos.chapa}" style="text-align: center"></h:outputText> 
+                                    </h:commandLink> 
+                            </p:column> 
+                            <p:column headerText="Auto"> 
+                                <h:outputText value="#{seguro.autos.marca} #{seguro.autos.modelo}" style="text-align: center"></h:outputText> 
+                            </p:column> 
+                            <p:column headerText="Valor Seguro"> 
+                                <h:outputText value="#{seguro.valorSeguro}" style="text-align: center"></h:outputText> 
+                            </p:column> 
+                    <p:column headerText="Vencimiento" > 
+                                <h:outputText value="#{seguro.fchVenc}"  style="text-align: center">
+                                    <f:convertDateTime pattern="dd/MM/yyyy" />
+                                </h:outputText> 
+                            </p:column> 
+                            <p:column headerText="Estado"> 
+                                <h:outputText value="#{seguro.estadoSeguro==1 ? 'Pendiente' : 'Pagado'}" style="text-align: center"></h:outputText> 
+                            </p:column> 
+                    </p:dataTable>  
+                    <p:commandButton value="Nuevo" id="NuevoSeguro" 
+                        action="#{seguroMBean.nuevo()}" ajax="false"> 
+                    </p:commandButton> 
+            </h:form> 
+        </p:panel>
+        
+    </h:body>
+</html>
+-->

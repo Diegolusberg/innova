@@ -1,0 +1,27 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
+    <h:form>
+        <p:outputPanel id="menuPanel" layout="block">  
+            <p:menu  style="width:213px; height:483px; border:none; font-size:small; padding:0px;"> 
+                <p:submenu label="#{msg['label.gestiones']}" icon="ui-icon ui-icon-refresh"> 
+                    <p:menuitem value="#{msg['label.usuarios']}" url="/faces/abm/usuarios/ConsultarUsuarios.xhtml" /> 
+                    <p:menuitem value="#{msg['label.autos']}" url="/faces/abm/autos/ConsultarAutos.xhtml" /> 
+                    <p:menuitem value="#{msg['label.clientes']}" url="/faces/abm/clientes/ConsultarClientes.xhtml" /> 
+                    <p:menuitem value="#{msg['label.tipos_movimiento']}" url="/faces/abm/tipomovimiento/ConsultarTMovimientos.xhtml" /> 
+                </p:submenu> 
+                <p:submenu label="#{msg['label.otros_movimientos']}" icon="ui-icon ui-icon-refresh"> 
+                    <p:menuitem value="#{msg['label.alquiler']}" url="/faces/mov/alquiler/ConsultarAlquiler.xhtml" /> 
+                    <p:menuitem value="#{msg['label.seguros']}" url="/faces/abm/seguro/ConsultarSeguros.xhtml" /> 
+                </p:submenu> 
+                <p:submenu label="#{msg['label.informes']}" icon="ui-icon ui-icon-refresh"> 
+                    <p:menuitem value="#{msg['label.infoUsuario']}" url="/faces/inf/usuario/InformeUsuario.xhtml" /> 
+                    <p:menuitem value="#{msg['label.infoAutos']}" url="/faces/inf/autos/InformeAutos.xhtml" /> 
+                    <p:menuitem value="#{msg['label.infoClientes']}" url="/faces/inf/clientes/InformeClientes.xhtml" /> 
+                    <p:menuitem value="#{msg['label.infoTMovs']}" url="/faces/inf/tipomovimientos/InformeTMovimientos.xhtml" /> 
+                    <p:menuitem value="#{msg['label.infoSeguros']}" url="/faces/inf/seguros/InformeSeguros.xhtml" /> 
+                    <p:menuitem value="#{msg['label.infoCuotas']}" url="/faces/inf/cuotasautos/InformeCuotasAutos.xhtml" /> 
+                    <p:menuitem value="#{msg['label.infoAlquileres']}" url="/faces/inf/alquileres/InformeAlquileres.xhtml" /> 
+                    <p:menuitem value="#{msg['label.infoMovs']}" url="/faces/inf/movimientos/InformeMovimientos.xhtml" /> 
+                </p:submenu> 
+            </p:menu> 
+        </p:outputPanel>
+    </h:form> </ui:composition>

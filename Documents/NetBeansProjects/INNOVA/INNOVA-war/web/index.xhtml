@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <h:form>
+            <br></br>
+            <h:link outcome="abm/usuarios/ConsultarUsuarios.xhtml" value="Usuarios"></h:link>
+            <br></br>
+            <h:link outcome="abm/autos/ConsultarAutos.xhtml" value="Autos"></h:link>
+            <br></br>
+            <h:link outcome="abm/clientes/ConsultarClientes.xhtml" value="Clientes"></h:link>
+            <br></br>
+            <h:link outcome="abm/alquiler/ConsultarAlquiler.xhtml" value="Alquileres"></h:link>
+            <br></br>
+            <h:link outcome="abm/seguro/ConsultarSeguros.xhtml" value="Seguros"></h:link>
+            <br></br>
+            <h:link outcome="abm/tipomovimiento/ConsultarTMovimientos.xhtml" value="Tipos de Movimientos"></h:link>
+            <br></br>
+            <h:link outcome="templates/template.xhtml" value="Template"></h:link>
+        
+        
+            <p:dock position="bottom">
+                <p:menuitem value="USUARIOS" icon="/recursos/home.png" outcome="abm/usuarios/ConsultarUsuarios.xhtml" />
+                <p:menuitem value="AUTOS" icon="/recursos/music.png" outcome="abm/autos/ConsultarAutos.xhtml"/>
+                <p:menuitem value="CLIENTES" icon="/recursos/video.png" outcome="abm/clientes/ConsultarClientes.xhtml"/>
+
+            </p:dock>
+        </h:form>
+    </h:body>
+</html>
+
+<!--                <p:menuitem value="Email" icon="/recursos/email.png" url="#"/>
+                <p:menuitem value="Portfolio" icon="/recursos/portfolio.png" url="#"/>
+                <p:menuitem value="Link" icon="/recursos/link.png" url="#"/>
+                <p:menuitem value="RSS" icon="/recursos/rss.png" url="#"/>
+                <p:menuitem value="History" icon="/recursos/history.png" url="#"/>-->

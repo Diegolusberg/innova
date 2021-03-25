@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content">
+        <!-- Código de la funcionalidad va aquí -->
+
+        <h:head></h:head> 
+        <h:body>  
+            <p:panel id="panel" header="#{msg['label.editar_seguro']}" style="margin-bottom:10px;">
+                <h:form> 
+                    <h:panelGrid border="1" columns="2"> 
+                        <h:outputText value="#{msg['label.auto']}"></h:outputText> 
+                        <p:selectOneMenu value="#{seguroMBean.seguro.autos.idAuto}"
+                                         style="width:150px" required="true" requiredMessage="#{msg['label.autoObligatorio']}">
+                            <f:selectItem itemLabel="#{msg['label.seleccione']}" itemValue=""
+                                          noSelectionOption="true" />
+                            <f:selectItems value="#{autoMBean.autoses}"
+                                           var="autos" itemLabel="#{autos.marca} #{autos.modelo} (#{autos.chapa})"
+                                           itemValue="#{autos.idAuto}" />
+                        </p:selectOneMenu>
+                        <h:outputText value="#{msg['label.valor_seguro']}"></h:outputText> 
+                        <p:inputText value="#{seguroMBean.seguro.valorSeguro}" required="true" requiredMessage="#{msg['label.valorSeguroObligatorio']}"></p:inputText> 
+                        <h:outputText value="#{msg['label.fecha_vencimiento']}"></h:outputText> 
+                        <p:calendar value="#{seguroMBean.seguro.fchVenc}" pattern="dd/MM/yyyy"  maxdate="" ></p:calendar> 
+                    </h:panelGrid> 
+                    <p:commandButton value="#{msg['label.actualizar']}" action="#{seguroMBean.actualizar()}" /> 
+                    <p:commandButton value="#{msg['label.atras']}" action="#{seguroMBean.irALaConsulta()}" immediate="true" /> 
+                </h:form> 
+            </p:panel>
+        </h:body> 
+    </ui:define>
+</ui:composition>
+
+
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head></h:head> 
+    <h:body> 
+        <p:panel id="panel" header="Editar Seguro" style="margin-bottom:10px;">
+            <h:form> 
+                <h:panelGrid border="1" columns="2"> 
+                    <h:outputText value="Auto"></h:outputText> 
+                    <p:selectOneMenu value="#{seguroMBean.seguro.autos.idAuto}"
+                                     style="width:150px">
+                        <f:selectItem itemLabel="Seleccione" itemValue=""
+                                      noSelectionOption="true" />
+                        <f:selectItems value="#{autoMBean.autoses}"
+                                       var="autos" itemLabel="#{autos.marca} #{autos.modelo} (#{autos.chapa})"
+                                       itemValue="#{autos.idAuto}" />
+                    </p:selectOneMenu>
+                    <h:outputText value="Valor Seguro"></h:outputText> 
+                    <p:inputText value="#{seguroMBean.seguro.valorSeguro}"></p:inputText> 
+                    <h:outputText value="Fecha de Vencimiento"></h:outputText> 
+                    <p:calendar value="#{seguroMBean.seguro.fchVenc}" pattern="dd/MM/yyyy"  maxdate="" ></p:calendar> 
+                </h:panelGrid> 
+                <p:commandButton value="Actualizar" action="#{seguroMBean.actualizar()}" /> 
+                <p:commandButton value="Atras" action="#{seguroMBean.irALaConsulta()}" /> 
+            </h:form> 
+        </p:panel>
+    </h:body> 
+</html> -->

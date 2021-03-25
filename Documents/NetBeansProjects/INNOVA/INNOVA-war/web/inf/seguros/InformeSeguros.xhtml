@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content">
+        <h:body>
+            <h:form>
+                <h:panelGrid border="1" columns="2">
+                    <h:outputText value="#{msg['label.autos']}"></h:outputText>
+                    <p:selectOneMenu  value="#{informeSegurosMBean.idAuto}" 
+                                      style="width:150px"  >
+                        <f:selectItem itemLabel="#{msg['label.todos']}" itemValue="" noSelectionOption="true" />
+                        <f:selectItems value="#{informeSegurosMBean.autoses}" var="autos" itemLabel="#{autos.marca} #{autos.modelo}" itemValue="#{autos.idAuto}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <p:commandButton value="#{msg['label.imprimir']}"
+                                 action="#{informeSegurosMBean.imprimir}" />
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>

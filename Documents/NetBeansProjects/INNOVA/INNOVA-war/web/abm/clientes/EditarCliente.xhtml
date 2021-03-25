@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content"> 
+ 
+        <h:body> 
+            <p:panel id="panel" header="#{msg['label.editar_cliente']}" style="margin-bottom:10px;">
+                <h:form> 
+                    <h:panelGrid border="1" columns="2"> 
+                        <h:outputText value="#{msg['label.codigo']}"></h:outputText> 
+                        <p:inputText value="#{clientesMBean.cliente.idCliente}"></p:inputText> 
+                        <h:outputText value="#{msg['label.nombre']}"></h:outputText> 
+                        <p:inputText value="#{clientesMBean.cliente.nombre}" maxlength="40" required="true" requiredMessage="#{msg['label.nombreObligatorio']}"></p:inputText> 
+                        <h:outputText value="#{msg['label.apellido']}"></h:outputText> 
+                        <p:inputText value="#{clientesMBean.cliente.apellido}" maxlength="40"></p:inputText> 
+                        <h:outputText value="#{msg['label.documento']}"></h:outputText> 
+                        <p:inputText value="#{clientesMBean.cliente.ci}" required="true" requiredMessage="#{msg['label.cedulaObligatorio']}"></p:inputText> 
+                        <h:outputText value="#{msg['label.nro_tarjeta']}"></h:outputText> 
+                        <p:inputText value="#{clientesMBean.cliente.nroTarjeta}" maxlength="20"></p:inputText> 
+                        <h:outputText value="#{msg['label.direccion']}"></h:outputText> 
+                        <p:inputText value="#{clientesMBean.cliente.direccion}" maxlength="100"></p:inputText> 
+                        <h:outputText value="#{msg['label.telefono']}"></h:outputText> 
+                        <p:inputText value="#{clientesMBean.cliente.telefono}" maxlength="15" required="true" requiredMessage="#{msg['label.telefonoObligatorio']}"></p:inputText> 
+                    </h:panelGrid> 
+                    <p:commandButton value="#{msg['label.actualizar']}" action="#{clientesMBean.actualizar()}" /> 
+                    <p:commandButton value="#{msg['label.atras']}" action="#{clientesMBean.irALaConsulta()}" immediate="true"/> 
+                </h:form> 
+            </p:panel>
+        </h:body> 
+    </ui:define>
+</ui:composition>

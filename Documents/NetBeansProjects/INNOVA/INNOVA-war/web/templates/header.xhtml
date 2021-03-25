@@ -1,0 +1,17 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core"> 
+    <h:form style="background-image: url(/INNOVA-war/recursos/innova_rojo.jpeg);height: 100px;"> 
+        <center> 
+            <p:commandButton value="#{msg['label.cerrar_sesion']}" action="#{loginMBean.logout}"/>
+            <h:form>
+                <h:outputText value="#{msg['nombre.sistema']}" style="color: blue"/>
+                <h:selectOneMenu value="#{internacionalizacion.codigoIdioma}"
+                                 onchange="submit()"
+                                 valueChangeListener="#{internacionalizacion.cambiarIdioma}">
+                    <f:selectItems value="#{internacionalizacion.idiomas}" />
+                </h:selectOneMenu>
+               
+            </h:form>
+        </center>
+    </h:form>
+</ui:composition>

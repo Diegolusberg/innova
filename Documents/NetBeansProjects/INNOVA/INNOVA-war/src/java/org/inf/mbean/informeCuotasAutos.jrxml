@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="informeCuotasAutos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="40e60f8d-7696-4376-95d5-0297e1a7781f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAuto" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+concat(trim(b.marca),' ',trim(b.modelo),' Chapa: ',trim(chapa)) as "Auto",
+a.nro_cuota as "Nro de Cuota",
+a.valor_cuota as "Valor",
+a.vencimiento_cuota as "Fch Vto",
+case a.estado when 'C' then 'Cancelado' else 'Pendiente' end as "Estado",
+case when a.fechapago is null then '' else to_char(a.fechapago,'dd/MM/yyyy') end as "Fch Pago"
+from cuotas_autos a,autos b
+where a.id_auto=b.id_auto
+and (a.id_auto = $P{idAuto} or $P{idAuto} = 0)
+order by "Auto",a.nro_cuota]]>
+	</queryString>
+	<field name="Auto" class="java.lang.String"/>
+	<field name="Nro de Cuota" class="java.lang.Integer"/>
+	<field name="Valor" class="java.lang.Integer"/>
+	<field name="Fch Vto" class="java.sql.Date"/>
+	<field name="Estado" class="java.lang.String"/>
+	<field name="Fch Pago" class="java.lang.String"/>
+	<group name="cuotas">
+		<groupExpression><![CDATA[$F{Auto}]]></groupExpression>
+		<groupHeader>
+			<band height="30">
+				<textField>
+					<reportElement uuid="19c4d803-3dbb-47b9-814c-105610f8ec99" x="7" y="5" width="414" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{Auto}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="3e7f1953-d0a3-458e-82bc-7e603a80c40d" x="0" y="10" width="555" height="44"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INNOVA RENTA CAR]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="27c69299-058f-44e5-8cf8-aa9c2890a327" x="0" y="5" width="555" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20"/>
+				</textElement>
+				<text><![CDATA[LISTADO DE CUOTAS]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d0480b02-d5c3-4b0c-92e3-6a3aca5f51a1" x="3" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro de Cuota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c8414f6b-df5b-447a-a447-2c921c0898a3" x="111" y="2" width="79" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eeb07fbe-a225-43b4-b1dc-f1cfb0ebc15d" x="211" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fch Vto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2d0b2658-c7af-4af7-b2af-cf87f715b16f" x="313" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6ebeb36b-4910-4f63-ad9c-83b5acb75c8e" x="421" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fch Pago]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement uuid="27498076-d3e9-462b-b7c1-d2514b8f0310" x="3" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Nro de Cuota}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0;-#,##0">
+				<reportElement uuid="75bdcde6-19c0-4a61-9b0a-174114da01f4" x="111" y="2" width="79" height="20"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Valor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="88c3c707-0c76-493c-a141-2f5ba7b9f9ab" x="211" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Fch Vto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a78f6e12-dabc-447e-96e5-b591736e3014" x="313" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Estado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="d4bf5b92-1672-46a6-9de0-00577b7c900a" x="421" y="2" width="100" height="20"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Fch Pago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="21" splitType="Stretch"/>
+	</summary>
+</jasperReport>

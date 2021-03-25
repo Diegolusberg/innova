@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content"> 
+        <h:head></h:head> 
+        <h:body>  
+            <p:panel id="panel" header="#{msg['label.editar_auto']}" style="margin-bottom:10px;">
+                <h:form id="fo1">
+                    <h:panelGrid  border="1" columns="2"> 
+                        <h:outputText value="#{msg['label.codigo']}"></h:outputText> 
+                        <p:inputText value="#{autoMBean.auto.idAuto}" disabled="true" ></p:inputText> 
+                        <h:outputText value="#{msg['label.chapa']}"></h:outputText> 
+                        <p:inputText value="#{autoMBean.auto.chapa}" required="true" requiredMessage="#{msg['label.chapaObligatoria']}"></p:inputText> 
+                        <h:outputText value="#{msg['label.marca']}"></h:outputText> 
+                        <p:inputText value="#{autoMBean.auto.marca}" required="true" requiredMessage="#{msg['label.marcaObligatoria']}"></p:inputText> 
+                        <h:outputText value="#{msg['label.modelo']}"></h:outputText> 
+                        <p:inputText value="#{autoMBean.auto.modelo}" required="true" requiredMessage="#{msg['label.modeloObligatorio']}"></p:inputText> 
+                        <h:outputText value="#{msg['label.anio']}"></h:outputText> 
+                        <p:inputText value="#{autoMBean.auto.anho}" type="number" size="4"></p:inputText> 
+                        <h:outputText value="#{msg['label.detalles']}"></h:outputText> 
+                        <p:inputText value="#{autoMBean.auto.detalles}"></p:inputText> 
+                        <h:outputText value="#{msg['label.valor_diaria']}"></h:outputText> 
+                        <p:inputText value="#{autoMBean.auto.valorDiaria}" type="number" required="true" requiredMessage="#{msg['label.diariaObligatoria']}"></p:inputText> 
+                        <h:outputText value="#{msg['label.estado']}"></h:outputText> 
+                        <p:selectOneMenu value="#{autoMBean.auto.estado}"
+                                         style="width:150px">
+                            <f:selectItem itemLabel="#{msg['label.seleccione']}" itemValue=""/>
+                            <f:selectItem itemLabel="#{msg['label.disponible']}" itemValue="DISPONIBLE" />
+                            <f:selectItem itemLabel="#{msg['label.alquilado']}" itemValue="ALQUILADO" />
+                            <f:selectItem itemLabel="#{msg['label.reservado']}" itemValue="RESERVADO" />
+                        </p:selectOneMenu>
+                        <h:outputText value="#{msg['label.valor_adicional']}"></h:outputText> 
+                        <p:inputText value="#{autoMBean.auto.valorAdiccional}"></p:inputText> 
+                        <h:outputText value="#{msg['label.fecha_compra']}"></h:outputText> 
+                        <p:calendar value="#{autoMBean.auto.fechaCompra}" pattern="dd/MM/yyyy" maxdate="#{autoMBean.maxDate}"></p:calendar>
+                        <h:outputText value="#{msg['label.forma_compra']}"></h:outputText> 
+                        <p:selectOneMenu value="#{autoMBean.auto.formaCompra}"
+                                         style="width:150px">
+                            <f:selectItem itemLabel="#{msg['label.seleccione']}" itemValue=""/>
+                            <f:selectItem itemLabel="#{msg['label.contado']}" itemValue="CONTADO" />
+                            <f:selectItem itemLabel="#{msg['label.financiado']}" itemValue="FINANCIADO" />
+                            <p:ajax listener="#{autoMBean.mostrarFinan()}" update="@(.p1)" />
+                        </p:selectOneMenu>
+                        <h:outputText value="#{msg['label.precio']}"></h:outputText>
+                        <p:inputText class="p1" value="#{autoMBean.auto.precio}" type="number" disabled="#{autoMBean.mostrarFin}"/>
+                        <h:outputText value="#{msg['label.entrega']}"></h:outputText> 
+                        <p:inputText class="p1" value="#{autoMBean.auto.entrega}" type="number" disabled="#{!autoMBean.mostrarFin}"></p:inputText> 
+                        <h:outputText value="#{msg['label.cant_cuotas']}"></h:outputText> 
+                        <p:inputText class="p1" value="#{autoMBean.auto.cantCuotas}" type="number" disabled="#{!autoMBean.mostrarFin}"></p:inputText> 
+                        <h:outputText value="#{msg['label.valor_cuota']}"></h:outputText> 
+                        <p:inputText class="p1" value="#{autoMBean.auto.valCuota}" type="number" disabled="#{!autoMBean.mostrarFin}"></p:inputText>
+                    </h:panelGrid> 
+                    <p:commandButton id="bo" value="#{msg['label.actualizar']}" action="#{autoMBean.actualizar()}"/>
+                    <p:commandButton value="#{msg['label.atras']}" action="#{autoMBean.irALaConsulta()}" immediate="true"/> 
+                </h:form>  
+            </p:panel>
+
+        </h:body> 
+    </ui:define>
+</ui:composition>
+
+<!--<h:panelGrid id="p1" rendered="#{!autoMBean.mostrarFin}" columns="2" border="1" >
+                
+            </h:panelGrid>
+            <h:outputText value="Condiciones de Financiacion" rendered="#{autoMBean.mostrarFin}"/>
+            <h:panelGrid id="p2"  columns="2" border="1" rendered="#{autoMBean.mostrarFin}">
+                    
+            </h:panelGrid>-->
+<!--                        <p:inputText value="#{autoMBean.auto.estado == 1 ? Disponible : autoMBean.auto.estado == 2 ? Alquilado : Reservado}"></p:inputText> -->

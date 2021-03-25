@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/templates/template.xhtml"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <ui:define name="metadata">
+    </ui:define>
+    <ui:define name="content">
+        <h:head></h:head> 
+        <h:body>
+            <span style="color: blue; font-size: 30px; font-weight: bold;" >#{autoMBean.auto.marca} #{autoMBean.auto.modelo} #{autoMBean.auto.chapa}</span>
+            <h:form> 
+                <p:dataTable var="cuota" value="#{autoMBean.cuotasAutoses}" paginator="true" rows="10"> 
+                    <p:column headerText="#{msg['label.nro_cuota']}"> 
+                        <h:outputText value="#{cuota.cuotasAutosPK.nroCuota}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.valor_cuota']}"> 
+                        <h:outputText value="#{cuota.valorCuota}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.vencimiento']}"> 
+                        <h:outputText value="#{cuota.vencimientoCuota}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.estado']}"> 
+                        <h:outputText value="#{cuota.estado}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.fecha_pago']}"> 
+                        <h:outputText value="#{cuota.fechapago}"></h:outputText> 
+                    </p:column> 
+                    <p:column headerText="#{msg['label.accion']}"> 
+                        <p:commandButton value="#{msg['label.pagar']}" action="#{autoMBean.pagarCuota(cuota)}" ajax="false" disabled="#{cuota.estado=='C'}" /> 
+                    </p:column> 
+                </p:dataTable> 
+                <p:commandButton value="#{msg['label.atras']}" action="#{autoMBean.irALaConsulta()}" /> 
+            </h:form> 
+        </h:body>
+
+    </ui:define>
+</ui:composition>
+
+
+
+
+
+<!--<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:p="http://primefaces.org/ui"> 
+    <h:head></h:head> 
+    <h:body>
+        <span style="color: blue; font-size: 30px; font-weight: bold;" >#{autoMBean.auto.marca} #{autoMBean.auto.modelo} #{autoMBean.auto.chapa}</span>
+        <h:form> 
+            <p:dataTable var="cuota" value="#{autoMBean.cuotasAutoses}" paginator="true" rows="10"> 
+                <p:column headerText="#{msg['label.nro_cuota']}"> 
+                    <h:outputText value="#{cuota.cuotasAutosPK.nroCuota}"></h:outputText> 
+                </p:column> 
+                <p:column headerText="#{msg['label.valor_cuota']}"> 
+                    <h:outputText value="#{cuota.valorCuota}"></h:outputText> 
+                </p:column> 
+                <p:column headerText="#{msg['label.vencimiento']}"> 
+                    <h:outputText value="#{cuota.vencimientoCuota}"></h:outputText> 
+                </p:column> 
+                <p:column headerText="#{msg['label.estado']}"> 
+                    <h:outputText value="#{cuota.estado}"></h:outputText> 
+                </p:column> 
+                <p:column headerText="#{msg['label.fecha_pago']}"> 
+                    <h:outputText value="#{cuota.fechapago}"></h:outputText> 
+                </p:column> 
+                <p:column headerText="#{msg['label.accion']}"> 
+                    <p:commandButton value="#{msg['label.pagar']}" action="#{autoMBean.pagarCuota(cuota)}" ajax="false" disabled="#{cuota.estado=='C'}" /> 
+                </p:column> 
+            </p:dataTable> 
+            <p:commandButton value="#{msg['label.atras']}" action="#{autoMBean.irALaConsulta()}" /> 
+        </h:form> 
+    </h:body>
+</html>
+
+-->
